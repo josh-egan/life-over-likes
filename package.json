@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "reschedule": "npm run unschedule && npm run schedule",
     "schedule": "node schedule.js",
     "unschedule": "node unschedule.js"
   },
