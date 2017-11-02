@@ -17,8 +17,22 @@ ZIP_CODE=12345
 
 You will need `nvm` previously installed.
 
+When the above steps have been met, run the following commands:
+
 ```bash
 nvm install
 npm install
 npm run schedule
+```
+
+Running `npm schedule` will schedule the task to run every day at the same time, two minutes in the future from when you run the schedule command. This makes it so that after scheduling the task, the first run will happen within the next two minutes.
+
+Note that scheduling is only supported for Mac right now.
+
+Other commands that are available: 
+
+```bash
+npm run reschedule
+npm run unschedule
+npm start
 ```

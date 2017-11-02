@@ -2,6 +2,7 @@
 
 const { spawn } = require('child_process');
 const fs = require('fs');
+const moment = require('moment');
 const path = require('path');
 
 // http://www.launchd.info/
@@ -15,6 +16,7 @@ const filePath = path.join(process.env.HOME, 'Library', 'LaunchAgents', 'lifeOve
 
 module.exports = {
   schedule() {
+    const twoMinutesFromNow = moment().add(2, 'minutes');
     const xml = `
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
@@ -32,9 +34,9 @@ module.exports = {
     <key>StartCalendarInterval</key>
     <dict>
       <key>Hour</key>
-      <integer>12</integer>
+      <integer>${twoMinutesFromNow.hours()}</integer>
       <key>Minute</key>
-      <integer>46</integer>
+      <integer>${twoMinutesFromNow.minutes()}</integer>
     </dict>
     
     <key>WorkingDirectory</key>
@@ -43,7 +45,7 @@ module.exports = {
     <key>EnvironmentVariables</key>
     <dict>
       <key>PATH</key>
-      <string>/bin:/usr/bin:/usr/local/bin</string>
+      <string>${process.env.PATH}</string>
     </dict>
 	
     <key>StandardErrorPath</key>
